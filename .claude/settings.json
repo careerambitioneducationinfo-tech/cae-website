@@ -1,0 +1,96 @@
+{
+  "projectName": "Career Ambition Education (CAE) Website",
+  "version": "2.0.0",
+
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(npm install *)",
+      "Bash(npx *)",
+      "Bash(git status)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git log *)",
+      "Bash(git diff *)",
+      "Bash(cat *)",
+      "Bash(ls *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(touch *)",
+      "Bash(find *)",
+      "Bash(grep *)",
+      "Read(*)",
+      "Write(app/**)",
+      "Write(components/**)",
+      "Write(lib/**)",
+      "Write(types/**)",
+      "Write(public/**)",
+      "Write(styles/**)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(git push *)",
+      "Bash(git reset --hard *)",
+      "Write(.env*)",
+      "Write(node_modules/**)"
+    ]
+  },
+
+  "env": {
+    "NODE_ENV": "development",
+    "NEXT_PUBLIC_SITE_NAME": "Career Ambition Education",
+    "NEXT_PUBLIC_DOMAIN": "careerambition.com",
+    "NEXT_PUBLIC_SITE_URL": "https://careerambition.com",
+    "NEXT_PUBLIC_PHONE": "+91-9973774459",
+    "NEXT_PUBLIC_WHATSAPP": "919973774459",
+    "NEXT_PUBLIC_EMAIL": "contact@careerambitioneducation.com",
+    "NEXT_PUBLIC_ADDRESS": "Ram Saraan Gate, Chandmari, Motihari, Bihar 845401"
+  },
+
+  "codeStyle": {
+    "language": "TypeScript",
+    "framework": "Next.js 14 (App Router)",
+    "styling": "Tailwind CSS",
+    "uiLibrary": "shadcn/ui",
+    "icons": "Lucide React",
+    "animation": "Framer Motion ^11",
+    "images": "Next.js <Image> (WebP, lazy-loaded)",
+    "formLibrary": "React Hook Form + Zod",
+    "database": "Supabase (PostgreSQL)",
+    "email": "Nodemailer (Gmail SMTP)",
+    "hosting": "Railway"
+  },
+
+  "keyFiles": {
+    "animations": "lib/animations.ts",
+    "popup": "lib/popup.ts",
+    "constants": "lib/constants.ts",
+    "validations": "lib/validations.ts",
+    "supabase": "lib/supabase.ts",
+    "mailer": "lib/mailer.ts",
+    "popupController": "components/forms/PopupController.tsx",
+    "sectionWrapper": "components/shared/SectionWrapper.tsx",
+    "animatedStat": "components/shared/AnimatedStat.tsx",
+    "globalStyles": "app/globals.css",
+    "tailwindConfig": "tailwind.config.ts",
+    "layout": "app/layout.tsx"
+  },
+
+  "popupConfig": {
+    "storageKey": "cae_popup_shown",
+    "leadKey": "cae_lead_submitted",
+    "ttlMs": 86400000,
+    "delays": {
+      "/": 0,
+      "default": 2000
+    }
+  },
+
+  "imageConfig": {
+    "format": "webp",
+    "maxSizeKb": 200,
+    "heroHasProperty": "priority",
+    "altLanguage": "English only"
+  }
+}
