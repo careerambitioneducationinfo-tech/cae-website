@@ -1,8 +1,39 @@
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Accordion keyframes — defined at root level (NOT inside @theme) so Tailwind v3 can use them */
+@keyframes accordion-down {
+  from { height: 0; }
+  to   { height: var(--accordion-panel-height, auto); }
+}
+@keyframes accordion-up {
+  from { height: var(--accordion-panel-height, auto); }
+  to   { height: 0; }
+}
+
+/* ── Railway chatbot widget — push above mobile pill bar (70px) ── */
+@media (max-width: 1023px) {
+  /* Target common launcher button patterns from embed scripts */
+  [id*="cae-"] > button,
+  [class*="cae-launcher"],
+  [class*="chat-launcher"],
+  [class*="widget-launcher"],
+  [id*="chat-launcher"],
+  iframe[src*="web-production-a532a"] {
+    bottom: 80px !important;
+  }
+}
+
+/* Scrollbar utility */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 
 @layer utilities {
   .text-balance {
@@ -11,10 +42,6 @@
 }
 
 @layer base {
-  .theme {
-    --font-heading: var(--font-sans);
-    --font-sans: var(--font-sans);
-  }
   :root {
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
@@ -31,24 +58,13 @@
     --accent: oklch(0.97 0 0);
     --accent-foreground: oklch(0.205 0 0);
     --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: oklch(0.985 0 0);
     --border: oklch(0.922 0 0);
     --input: oklch(0.922 0 0);
     --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
     --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
   }
+
   .dark {
     --background: oklch(0.145 0 0);
     --foreground: oklch(0.985 0 0);
@@ -65,30 +81,37 @@
     --accent: oklch(0.269 0 0);
     --accent-foreground: oklch(0.985 0 0);
     --destructive: oklch(0.704 0.191 22.216);
+    --destructive-foreground: oklch(0.985 0 0);
     --border: oklch(1 0 0 / 10%);
     --input: oklch(1 0 0 / 15%);
     --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
   }
+
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+    font-family: var(--font-poppins), "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.7;
   }
+
   html {
     @apply font-sans;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.7;
+    word-spacing: 0.08em;
+  }
+
+  p {
+    line-height: 1.75;
+    word-spacing: 0.04em;
   }
 }

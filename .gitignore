@@ -18,19 +18,35 @@
 
 # misc
 .DS_Store
+**/.DS_Store
 *.pem
+Thumbs.db
 
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# local env files
+# local env files — NEVER commit real credentials
+.env
+.env.local
 .env*.local
+.env.development
+.env.production
 
-# vercel
+# vercel / railway
 .vercel
+.railway
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Claude agent memory — contains internal project state, not for repo
+.claude/agents/agent-memory/
+
+# OS / editor
+.idea/
+.vscode/settings.json
+*.swp
+*.swo
