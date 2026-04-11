@@ -50,7 +50,7 @@ export default function LeadForm({
       })
       if (!res.ok) throw new Error('Submit failed')
       toast.success(`धन्यवाद ${data.name}! हम 2 घंटे में call करेंगे। 🎓`)
-      onSuccess ? markLeadSubmitted() : markPopupShown()
+      if (onSuccess) { markLeadSubmitted() } else { markPopupShown() }
       reset()
       onSuccess?.()
     } catch {

@@ -327,7 +327,7 @@ export default function ChatbotWidget() {
 
     function open()   { isOpen = true;  $window.classList.add('bb-open');    setTimeout(() => $input.focus(), 50) }
     function close()  { isOpen = false; $window.classList.remove('bb-open') }
-    function toggle() { isOpen ? close() : open() }
+    function toggle() { if (isOpen) { close() } else { open() } }
 
     // Expose global API for FloatingWidget to call
     ;(window as Window & { CAEWidget?: { toggle: () => void; open: () => void; close: () => void } }).CAEWidget = { toggle, open, close }
