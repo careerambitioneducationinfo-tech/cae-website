@@ -28,10 +28,15 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: 'Career Ambition Education — Best Admission Consultancy in Bihar',
+  title: 'Career Ambition Education',
   description:
     'Get expert guidance for B.Tech, MBBS, MBA admissions. 17+ years, 10,000+ successful admissions, 20 offices across Bihar. Free counseling available.',
   metadataBase: new URL('https://careerambition.com'),
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/apple-icon.png',
+  },
 }
 
 export default function RootLayout({
