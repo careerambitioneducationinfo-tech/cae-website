@@ -6,97 +6,193 @@ _Log important decisions here so agents don't re-debate them._
 
 ## Design Decisions
 
-| Decision        | Choice                   | Reason                              |
-|-----------------|--------------------------|-------------------------------------|
-| Primary font    | Poppins                  | Client DPR spec                     |
-| Hindi font      | Noto Sans Devanagari     | Client DPR spec                     |
-| UI library      | shadcn/ui                | Client DPR spec                     |
-| Form library    | React Hook Form + Zod    | Client DPR spec                     |
-| Animation       | **Framer Motion ^11**    | Replaces Lottie React; better React integration, scroll triggers, spring physics |
-| Image component | **Next.js `<Image>`**    | WebP optimization, lazy loading, CLS prevention |
-| CSS variables   | Updated style guide      | Standardized design tokens, consistent spacing/radius/motion |
+| Decision | Choice | Reason |
+|----------|--------|--------|
+| Primary font | Poppins | Client spec |
+| Hindi font | Noto Sans Devanagari | Client spec |
+| UI library | shadcn/ui v4 (`@base-ui/react`) | NOT Radix UI — use `@base-ui/react` APIs |
+| Form library | React Hook Form + Zod | Client spec |
+| Animation | Framer Motion ^11 | No CSS @keyframes, no Lottie, no GSAP |
+| Image component | Next.js `<Image>` | WebP, lazy loading, CLS prevention |
+| Image format | `.webp` everywhere | All `.png` converted to `.webp` via sharp (quality 85). Zero `.png` refs in source |
+| Hero background | Dark `bg-dk` + radial glows | Clean, no Three.js aurora (removed — too heavy) |
+| Form in hero | ❌ Removed | Form moved to dedicated `CTAFormSection` + popup |
+| Partner colleges | Logo images from `/public/icons/` | Replaced text pills with actual university logos (all `.webp`) |
+| MBBS country icons | Emoji flags (🇷🇺🇺🇿🇰🇬🇰🇿🇧🇩🇳🇵) | Replaced generic Lucide icons — flags are more recognisable and no library needed |
+| Chatbot | Railway embed script | Automation team's script injected via `ClientProviders.tsx` useEffect — do NOT rebuild |
+| FloatingWidget buttons | WhatsApp + Call only | Chatbot launcher rendered by Railway embed script — no duplicate button from our side |
+
+---
+
+## Form Fields (LOCKED — do not add optional fields back)
+
+The lead form takes exactly **6 required fields** and 1 silent field:
+
+| Field | Type | Required |
+|-------|------|----------|
+| `name` | text | ✅ min 2 chars |
+| `phone` | tel | ✅ exactly 10 digits |
+| `email` | email | ✅ valid email |
+| `course` | select | ✅ from `COURSE_OPTIONS` |
+| `status` | select | ✅ from `STATUS_OPTIONS` |
+| `city` | text | ✅ min 2 chars |
+| `source_page` | hidden | injected silently |
+
+> `message` and `budget` fields were **permanently removed**. Do not add them back.
+
+---
+
+## Popup Behaviour (LOCKED)
+
+| Page | Behaviour |
+|------|-----------|
+| `/` Homepage | Shows on **every page load/refresh** (no TTL). Only suppressed if lead already submitted |
+| All other pages | Shows once per 24h, 2s delay |
+
+> Popup structure: dark header (CAE logo + T2 taglines) → college logo marquee (10 logos) → LeadForm
+
+---
+
+## shadcn/ui v4 API Notes (IMPORTANT)
+
+| Component | Correct API | Wrong API |
+|-----------|-------------|-----------|
+| Accordion | `<Accordion multiple={false}>` | ~~`type="single" collapsible`~~ |
+| Tabs | `data-active:` for active styles | ~~`data-state="active"`~~ |
+| Select | Use native `<select>` in forms | shadcn Select breaks RHF `register()` |
+
+---
+
+## Navigation Context
+
+- `NavProvider` wraps the entire `<body>` in `app/layout.tsx`
+- `useNav()` gives `drawerOpen` / `setDrawerOpen`
+- **Navbar** calls `setDrawerOpen(true/false)` when hamburger opens/closes
+- **FloatingWidget** reads `drawerOpen` — hides mobile CTA bar when drawer is open
+
+---
+
+## Page Layout Architecture
+
+- `app/layout.tsx` renders: `NavProvider` → `Topbar` → `Navbar` → `{children}` → `Footer` → `ClientProviders`
+- `ClientProviders` renders: `PopupController` (dynamic, ssr:false) + `FloatingWidget` + `Toaster`
+- `ClientProviders` also injects Railway chatbot embed script via `useEffect`
+- `FloatingWidget` desktop: WhatsApp + Call circles. Mobile: Call Now + WhatsApp pill bar
+
+---
+
+## Chatbot Embed — Technical Detail (CRITICAL)
+
+```tsx
+// ClientProviders.tsx useEffect pattern — DO NOT CHANGE
+useEffect(() => {
+  if ((window as CAEWindow).__CAEWidgetLoaded) return   // StrictMode guard
+  ;(window as CAEWindow).CAE_SERVER_URL = 'https://web-production-a532a.up.railway.app'
+  const script = document.createElement('script')
+  script.src = 'https://web-production-a532a.up.railway.app/embed-widget.js'
+  script.async = true
+  document.body.appendChild(script)
+  // NO cleanup — widget is global singleton. Removing script breaks StrictMode re-mount.
+}, [])
+```
+
+**Why no cleanup:** React StrictMode runs `useEffect` twice (mount → cleanup → remount). If the script is removed in cleanup, the second mount injects it again, but `__CAEWidgetLoaded` is still `true` so the widget's IIFE returns early → icon never renders.
+
+---
+
+## Stats Bar
+
+- Shows **6 stats only** (90%+ Loan Approval Rate removed — caused uneven grid on mobile)
+- Layout: CSS grid `2 cols → 3 cols (sm) → 6 cols (lg)`
+- Borders applied per-cell based on grid position (not `divide-x/y` which breaks on flex-wrap)
+
+---
+
+## Homepage Section Order (LOCKED)
+
+1. HeroSection
+2. StatsBar
+3. AttentionHookSection
+4. **VideoSection** ← portrait card (9:16) + modal player, source: `caevideo.mp4`
+5. ServicesSection
+6. CoursesSection
+7. MBBSAbroadSection
+8. BSSCLoanSection
+9. **CTAFormSection** ← form lives here, `bg-dk`
+10. PartnerCollegesSection
+11. TestimonialsSection
+12. **AboutSection** ← founder + photo carousel
+13. FAQSection
+14. FinalCTABanner
+
+---
+
+## Icon Standards (LOCKED)
+
+All icons use **Lucide React** — no raw emojis in JSX except MBBS country flags.
+
+| Section | Icon choices |
+|---------|-------------|
+| Services | `GraduationCap`, `Stethoscope`, `Plane`, `Banknote`, `TrendingUp`, `Users` |
+| Courses | `Cpu` (B.Tech), `Stethoscope` (MBBS), `Plane` (Abroad), `Briefcase` (MBA), `TrendingUp` (BBA), `Code2` (BCA/MCA), `Smile` (BAMS/BDS), `Pill`, `Heart`, `Leaf`, `Scale`, `CreditCard` |
+| About bullets | `GraduationCap`, `Building2`, `Globe`, `Users` |
+| Hero trust badges | `CheckCircle` |
+| Hero CTA | `GraduationCap` |
 
 ---
 
 ## Technical Decisions
 
-| Decision       | Choice                    | Reason                                         |
-|----------------|---------------------------|------------------------------------------------|
-| Framework      | Next.js 14 App Router     | Client DPR spec                                |
-| Database       | Supabase (PostgreSQL)     | Client DPR spec                                |
-| Hosting        | Railway                   | Client DPR spec                                |
-| Email          | Nodemailer Gmail SMTP     | Client DPR spec                                |
-| Chatbot        | External (automation team)| Do not rebuild                                 |
-| Popup strategy | Layout-level `<PopupController>` | Mounts once in `app/layout.tsx`, works across all pages automatically |
-| Animation variants | `/lib/animations.ts` | Single source of truth — all variants in one file |
-| Popup logic    | `/lib/popup.ts`           | `shouldShowPopup()`, `markPopupShown()`, `markLeadSubmitted()` |
+| Decision | Choice | Reason |
+|----------|--------|--------|
+| Framework | Next.js 15 App Router | Client spec |
+| Database | Supabase (PostgreSQL) | Client spec |
+| Hosting | Railway, `output: 'standalone'` | Client spec |
+| Email | Nodemailer Gmail SMTP | Client spec |
+| `dynamic(..., { ssr: false })` | In `ClientProviders.tsx` (client component) | Next.js 15: `ssr: false` not allowed in Server Components |
+| `NavProvider` placement | `app/layout.tsx` body wrapper | Must wrap both `Navbar` and `ClientProviders` to share state |
+| Image optimisation | `avif`+`webp` formats, 30-day cache TTL | Faster loads on Railway (no CDN, cold starts reset cache without TTL) |
 
 ---
 
-## Content Decisions
+## Navbar / Footer Logo
 
-| Decision       | Choice                                          |
-|----------------|-------------------------------------------------|
-| Language       | Hinglish (10 rules in language-rules.md)        |
-| Numbers        | Always English numerals                         |
-| College names  | Always English                                  |
-| Meta / SEO     | English only                                    |
-| Image alt text | English only                                    |
+- Logo asset: `/public/icons/cae logo.webp` (converted from `.png`)
+- Size: `width={40} height={40}` with `className="h-10 w-10 object-contain shrink-0"`
+- Navbar desktop + drawer: `priority` prop (above-fold)
+- Footer brand column: no `priority` prop (below-fold)
 
 ---
 
-## Popup Delays (Locked)
+## Courses Page Decisions
 
-| Page           | Delay  |
-|----------------|--------|
-| `/` Homepage   | 0ms (immediate) |
-| All other pages| 2000ms |
-
----
-
-## Animation Rules (Locked)
-
-| Rule | Decision |
-|------|----------|
-| Library | Framer Motion ^11 only — no CSS @keyframes, no Lottie, no GSAP |
-| Variants location | `/lib/animations.ts` — never inline |
-| Scroll reveals | `useInView` with `once: true` and `margin: '-80px'` |
-| Stat counters | `AnimatedStat` component with spring physics |
-| CTA buttons | `whileTap={{ scale: 0.96 }}` on every button |
-| Reduced motion | `prefers-reduced-motion` always respected |
-| Max concurrent animations | 3–4 elements (Bihar low-end Android devices) |
+| Decision | Choice | Reason |
+|----------|--------|--------|
+| Hero background | `#1A183E` | Matches dark site theme |
+| Hero right panel | 3-slide carousel + logo marquee | Consistent with homepage HeroSection |
+| CTA button layout mobile | `flex flex-wrap` | `flex-col` caused 100% width stretch |
+| College data file | `lib/collegeData.ts` | Too large for constants.ts; typed with `College` interface |
 
 ---
 
-## Image Rules (Locked)
+## Bug Fixes Applied
 
-| Rule | Decision |
-|------|----------|
-| Component | Next.js `<Image>` only — no raw `<img>` |
-| Hero images | `priority` prop — LCP target < 2.5s on 3G |
-| Format | WebP only, max 200KB per image |
-| Alt text | English only |
-| Compression | `squoosh.app` or `sharp` before adding to `/public` |
-
----
-
-## Agent Responsibilities Split
-
-| Agent             | Owns                                                          |
-|-------------------|---------------------------------------------------------------|
-| `developer.md`    | Pages, API routes, Supabase, email, popup, animations setup, chatbot |
-| `reviewer.md`     | Code review, brand/language audit, animation audit, image audit, a11y, SEO |
-| `tester.md`       | E2E testing, form validation, animation tests, image tests, popup tests, API tests |
-| `content-writer.md` | All Hinglish copy, blog content, CTAs                      |
-| `ui-builder.md`   | React component scaffolding, Tailwind styling, Framer Motion patterns |
-| `seo-specialist.md` | Meta tags, keywords, URL slugs                             |
+| Bug | Fix |
+|-----|-----|
+| `outline-ring/50` CSS crash | Removed from `globals.css` — Tailwind v3 can't apply opacity modifier to `oklch()` vars |
+| Stats bar duplicate Hindi labels | Fixed `labelHi` in `lib/constants.ts` for 5 stats |
+| CourseFinder 0 results Medical/BAMS | Added 10 colleges to `lib/collegeData.ts` |
+| Hero animation invisible on courses page | `whileInView` + `viewport={viewportOnce}` instead of `animate="visible"` |
+| Chatbot icon not showing | StrictMode double-mount fix in `ClientProviders.tsx` — removed cleanup, added `__CAEWidgetLoaded` guard |
 
 ---
 
-## Open Questions
+## Pending from Client
 
-- [ ] YouTube channel link not provided — confirm with client
-- [ ] Facebook URL in DPR is long redirect — get clean URL from client
-- [ ] Chatbot frontend delivery date from automation team?
-- [ ] Gmail account for SMTP — confirm with client
-- [ ] Real CAE photos for hero/team/offices — confirm delivery timeline
+- [ ] `careerambition.com` DNS → Railway
+- [ ] YouTube channel URL (placeholder in Footer)
+- [ ] Chatbot icon live verification
+
+---
+
+_Last updated: 2026-04-20_

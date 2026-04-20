@@ -23,7 +23,7 @@ Build a **modern, high-converting education consultancy website** for CAE target
 
 | Layer       | Technology                                              |
 |-------------|---------------------------------------------------------|
-| Framework   | Next.js 14 (App Router)                                 |
+| Framework   | Next.js 15 (App Router)                                 |
 | Language    | TypeScript                                              |
 | Styling     | Tailwind CSS + inline styles                            |
 | UI Library  | shadcn/ui (Radix UI)                                    |
@@ -164,7 +164,7 @@ Graduation Lateral | Parent inquiring
 | Kyrgyzstan | ₹20–25L     | 6 Years   |
 | Kazakhstan | ₹20–30L     | 6 Years   |
 | Bangladesh | ₹20–35L     | 5.5 Years |
-| Nepal      | ₹25–45L     | 5.5 Years |
+| Nepal      | ₹20–45L     | 5.5 Years |
 
 > All universities: NMC approved + WHO listed. English medium. CAE provides FMGE/NEXT coaching.
 

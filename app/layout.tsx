@@ -1,11 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Poppins, Noto_Sans_Devanagari } from 'next/font/google'
 import './globals.css'
-import Topbar from '@/components/shared/Topbar'
-import Navbar from '@/components/shared/Navbar'
-import Footer from '@/components/shared/Footer'
-import ClientProviders from '@/components/shared/ClientProviders'
-import { NavProvider } from '@/lib/nav-context'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -31,7 +26,7 @@ export const metadata: Metadata = {
   title: 'Career Ambition Education',
   description:
     'Get expert guidance for B.Tech, MBBS, MBA admissions. 17+ years, 10,000+ successful admissions, 20 offices across Bihar. Free counseling available.',
-  metadataBase: new URL('https://careerambition.com'),
+  metadataBase: new URL('https://careerambitioneducation.com'),
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
@@ -48,14 +43,7 @@ export default function RootLayout({
       className={`${poppins.variable} ${notoSansDevanagari.variable}`}
     >
       <body className="font-sans antialiased bg-[#F5F5F8]">
-        <NavProvider>
-          <Topbar />
-          <Navbar />
-          {children}
-          <Footer />
-          <ClientProviders />
-        </NavProvider>
-
+        {children}
       </body>
     </html>
   )
