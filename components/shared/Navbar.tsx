@@ -97,7 +97,7 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2.5 shrink-0" aria-label="Career Ambition Education home">
               <Image
-                src="/icons/cae logo.png"
+                src="/icons/cae logo.webp"
                 alt="Career Ambition Education logo"
                 width={40}
                 height={40}
@@ -221,7 +221,7 @@ export default function Navbar() {
             <button
               onClick={openDrawer}
               aria-label="Open menu"
-              className="lg:hidden p-2 text-ind hover:bg-ind/5 rounded-lg transition-colors"
+              className="lg:hidden p-2 min-h-[44px] min-w-[44px] flex items-center justify-center text-ind hover:bg-ind/5 rounded-lg transition-colors"
             >
               <Menu className="w-6 h-6" />
             </button>
@@ -253,14 +253,14 @@ export default function Navbar() {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="fixed top-0 left-0 bottom-0 w-[280px] bg-white z-50 shadow-2xl flex flex-col"
+              className="fixed top-0 left-0 bottom-0 w-[min(280px,85vw)] bg-white z-50 shadow-2xl flex flex-col"
               aria-label="Mobile navigation"
             >
               {/* Drawer header */}
               <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 bg-white">
                 <div className="flex items-center gap-2.5">
                   <Image
-                    src="/icons/cae logo.png"
+                    src="/icons/cae logo.webp"
                     alt="Career Ambition Education logo"
                     width={36}
                     height={36}
@@ -274,7 +274,7 @@ export default function Navbar() {
                 <button
                   onClick={closeDrawer}
                   aria-label="Close menu"
-                  className="p-2 text-gray-400 hover:text-ind rounded-lg hover:bg-gray-100 transition-colors"
+                  className="p-2 min-h-[44px] min-w-[44px] flex items-center justify-center text-gray-400 hover:text-ind rounded-lg hover:bg-gray-100 transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>

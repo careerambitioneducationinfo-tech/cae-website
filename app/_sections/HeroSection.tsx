@@ -20,7 +20,7 @@ const SLIDES = [
     tag: 'Experience',
     title: '17+ Years of Trust',
     sub: 'Bihar\'s Most Trusted Counseling Since 2009',
-    image: '/icons/careerambitionexperince.png',
+    image: '/icons/careerambitionexperince.webp',
     accent: '#818cf8',
   },
   {
@@ -28,7 +28,7 @@ const SLIDES = [
     tag: 'All Courses',
     title: 'Every Course Covered',
     sub: 'B.Tech · MBBS · MBA · Law · Nursing & More',
-    image: '/icons/allcourses.png',
+    image: '/icons/allcourses.webp',
     accent: '#34d399',
   },
   {
@@ -36,7 +36,7 @@ const SLIDES = [
     tag: 'DRCC Scheme',
     title: 'BSCC Loan — 0% Interest',
     sub: '₹4L · Bihar Govt · 3,000+ Loans Processed',
-    image: '/icons/drcc_scheme.png',
+    image: '/icons/drcc_scheme.webp',
     accent: '#fbd207',
   },
 ]

@@ -33,7 +33,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2.5 mb-3">
               <Image
-                src="/icons/cae logo.png"
+                src="/icons/cae logo.webp"
                 alt="Career Ambition Education logo"
                 width={40}
                 height={40}

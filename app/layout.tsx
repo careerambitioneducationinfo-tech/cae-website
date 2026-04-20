@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Poppins, Noto_Sans_Devanagari } from 'next/font/google'
 import './globals.css'
 import Topbar from '@/components/shared/Topbar'
@@ -20,6 +20,12 @@ const notoSansDevanagari = Noto_Sans_Devanagari({
   variable: '--font-hindi',
   display: 'swap',
 })
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+}
 
 export const metadata: Metadata = {
   title: 'Career Ambition Education — Best Admission Consultancy in Bihar',

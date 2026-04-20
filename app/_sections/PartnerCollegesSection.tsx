@@ -3,16 +3,16 @@
 import Image from 'next/image'
 
 const LOGOS = [
-  { name: 'Amity University',         file: 'amity.png' },
-  { name: 'Bennett University',       file: 'bennetuni.png' },
-  { name: 'Chandigarh University',    file: 'chandigarhni.png' },
-  { name: 'GNIOT',                    file: 'gniot.png' },
-  { name: 'IIMT University',          file: 'iimt.png' },
-  { name: 'Jain University',          file: 'jain.png' },
-  { name: 'Kalinga University',       file: 'kalinga.png' },
-  { name: 'Parul University',         file: 'parul.png' },
-  { name: 'Sharda University',        file: 'shardha uni.png' },
-  { name: 'SRM University',           file: 'srm.png' },
+  { name: 'Amity University',         file: 'amity.webp' },
+  { name: 'Bennett University',       file: 'bennetuni.webp' },
+  { name: 'Chandigarh University',    file: 'chandigarhni.webp' },
+  { name: 'GNIOT',                    file: 'gniot.webp' },
+  { name: 'IIMT University',          file: 'iimt.webp' },
+  { name: 'Jain University',          file: 'jain.webp' },
+  { name: 'Kalinga University',       file: 'kalinga.webp' },
+  { name: 'Parul University',         file: 'parul.webp' },
+  { name: 'Sharda University',        file: 'shardha uni.webp' },
+  { name: 'SRM University',           file: 'srm.webp' },
 ]
 
 // Duplicate for seamless infinite loop

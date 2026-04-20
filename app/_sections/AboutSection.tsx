@@ -18,12 +18,12 @@ const ABOUT_POINTS = [
 const SLIDES = [
   {
     id: 0,
-    image: '/icons/careerambitionexperince.png',
+    image: '/icons/careerambitionexperince.webp',
     alt: 'Career Ambition Education — 17 years of experience and achievements',
   },
   {
     id: 1,
-    image: '/icons/collag.png',
+    image: '/icons/collag.webp',
     alt: 'Career Ambition Education — college admissions and student success',
   },
 ]
@@ -75,7 +75,7 @@ export default function AboutSection() {
             <div className="flex items-start gap-4 mb-6 pb-6 border-b border-gray-100">
               <div className="w-16 h-16 rounded-full border-2 border-ind/20 overflow-hidden shrink-0">
                 <Image
-                  src="/images/team/chandanprofile.png"
+                  src="/images/team/chandanprofile.webp"
                   alt="Chandan Sawan — Founder, Career Ambition Education"
                   width={64}
                   height={64}

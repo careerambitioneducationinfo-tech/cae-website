@@ -46,12 +46,12 @@ import StreamPills from './_sections/StreamPills'
 const HERO_SLIDES = [
   {
     id: 0,
-    image: '/icons/allcourses.png',
+    image: '/icons/allcourses.webp',
     alt: 'All courses available at Career Ambition Education',
   },
   {
     id: 1,
-    image: '/icons/drcc_scheme.png',
+    image: '/icons/drcc_scheme.webp',
     alt: 'DRCC BSCC loan scheme — Bihar government 0% interest loan',
   },
 ]
@@ -65,16 +65,16 @@ const slideVariants = {
 // ─── College logos for marquee ────────────────────────────────────────────
 
 const COLLEGE_LOGOS = [
-  { src: '/icons/gniot.png',        name: 'GNIOT' },
-  { src: '/icons/srm.png',          name: 'SRM University' },
-  { src: '/icons/amity.png',        name: 'Amity University' },
-  { src: '/icons/chandigarhni.png', name: 'Chandigarh University' },
-  { src: '/icons/iimt.png',         name: 'IIMT' },
-  { src: '/icons/jain.png',         name: 'Jain University' },
-  { src: '/icons/kalinga.png',      name: 'Kalinga University' },
-  { src: '/icons/bennetuni.png',    name: 'Bennett University' },
-  { src: '/icons/parul.png',        name: 'Parul University' },
-  { src: '/icons/shardha uni.png',  name: 'Sharda University' },
+  { src: '/icons/gniot.webp',        name: 'GNIOT' },
+  { src: '/icons/srm.webp',          name: 'SRM University' },
+  { src: '/icons/amity.webp',        name: 'Amity University' },
+  { src: '/icons/chandigarhni.webp', name: 'Chandigarh University' },
+  { src: '/icons/iimt.webp',         name: 'IIMT' },
+  { src: '/icons/jain.webp',         name: 'Jain University' },
+  { src: '/icons/kalinga.webp',      name: 'Kalinga University' },
+  { src: '/icons/bennetuni.webp',    name: 'Bennett University' },
+  { src: '/icons/parul.webp',        name: 'Parul University' },
+  { src: '/icons/shardha uni.webp',  name: 'Sharda University' },
 ]
 // Duplicate for seamless loop
 const LOGO_MARQUEE = [...COLLEGE_LOGOS, ...COLLEGE_LOGOS]

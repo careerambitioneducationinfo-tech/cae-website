@@ -179,7 +179,7 @@ export default function BsccContent() {
                 {/* Scheme image */}
                 <div className="relative w-full">
                   <Image
-                    src="/icons/drcc_scheme.png"
+                    src="/icons/drcc_scheme.webp"
                     alt="Bihar Student Credit Card DRCC scheme details"
                     width={600}
                     height={400}

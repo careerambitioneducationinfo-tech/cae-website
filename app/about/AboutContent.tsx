@@ -64,7 +64,7 @@ const ABOUT_SLIDES = [
     sub: 'Bihar का सबसे trusted नाम — Champaran से शुरू, पूरे Bihar में',
     gradient: 'from-[#1e1b4b] via-[#2e2567] to-[#3730a3]',
     accent: '#818cf8',
-    img: '/icons/careerambitionexperince.png',
+    img: '/icons/careerambitionexperince.webp',
   },
   {
     id: 1,
@@ -73,7 +73,7 @@ const ABOUT_SLIDES = [
     sub: 'Engineering · MBBS · MBA · Nursing और भी बहुत कुछ',
     gradient: 'from-[#064e3b] via-[#065f46] to-[#047857]',
     accent: '#34d399',
-    img: '/icons/collag.png',
+    img: '/icons/collag.webp',
   },
 ]
 

@@ -60,7 +60,8 @@ export default function FloatingWidget() {
               initial={{ y: 80, opacity: 0 }}
               animate={{ y: 0, opacity: 1, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } }}
               exit={{ y: 80, opacity: 0, transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] } }}
-              className="fixed bottom-0 left-0 right-0 z-[9999] bg-white/95 backdrop-blur-sm border-t border-gray-200 px-3 py-3"
+              className="fixed bottom-0 left-0 right-0 z-[9999] bg-white/95 backdrop-blur-sm border-t border-gray-200 px-3 pt-3"
+              style={{ paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom))' }}
             >
               <div className="flex gap-2">
                 <a

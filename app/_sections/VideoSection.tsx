@@ -27,7 +27,7 @@ export default function VideoSection() {
     <>
       <SectionWrapper
         id="our-story"
-        outerClassName="bg-dk"
+        outerClassName="bg-[#2D2563]"
         className="py-16"
         animate={false}
       >
