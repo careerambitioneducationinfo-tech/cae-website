@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { Phone, Bot } from 'lucide-react'
+import { Phone } from 'lucide-react'
 import { SITE, SOCIAL } from '@/lib/constants'
 import { useNav } from '@/lib/nav-context'
 
@@ -19,28 +19,14 @@ export default function FloatingWidget() {
 
   return (
     <>
-      {/* ══ DESKTOP — 3 stacked buttons, bottom-right ══ */}
+      {/* ══ DESKTOP — stacked buttons, bottom-right ══ */}
+      {/* Chatbot launcher is rendered by the Railway embed script above these */}
       <div className="hidden lg:flex fixed bottom-6 right-5 z-[9999] flex-col items-center gap-3">
 
-        {/* 1. Chatbot — Railway script renders its own button; this triggers it */}
-        <motion.button
-          initial={{ opacity: 0, scale: 0.6 }}
-          animate={{ opacity: 1, scale: 1, transition: { delay: 0, duration: 0.3, ease: [0.22, 1, 0.36, 1] } }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.93 }}
-          aria-label="Open AI chatbot"
-          className="w-14 h-14 bg-gradient-to-br from-pur to-ind rounded-full flex items-center justify-center shadow-xl shadow-pur/40"
-        >
-          <span className="flex flex-col items-center justify-center gap-0.5">
-            <Bot className="w-6 h-6 text-white" />
-            <span className="text-[9px] font-bold text-yel leading-none">AI</span>
-          </span>
-        </motion.button>
-
-        {/* 2. WhatsApp */}
+        {/* WhatsApp */}
         <motion.a
           initial={{ opacity: 0, scale: 0.6 }}
-          animate={{ opacity: 1, scale: 1, transition: { delay: 0.08, duration: 0.3, ease: [0.22, 1, 0.36, 1] } }}
+          animate={{ opacity: 1, scale: 1, transition: { delay: 0, duration: 0.3, ease: [0.22, 1, 0.36, 1] } }}
           href={SOCIAL.whatsapp}
           target="_blank"
           rel="noopener noreferrer"
@@ -52,10 +38,10 @@ export default function FloatingWidget() {
           <WhatsAppIcon size={26} />
         </motion.a>
 
-        {/* 3. Call */}
+        {/* Call */}
         <motion.a
           initial={{ opacity: 0, scale: 0.6 }}
-          animate={{ opacity: 1, scale: 1, transition: { delay: 0.16, duration: 0.3, ease: [0.22, 1, 0.36, 1] } }}
+          animate={{ opacity: 1, scale: 1, transition: { delay: 0.08, duration: 0.3, ease: [0.22, 1, 0.36, 1] } }}
           href={`tel:${SITE.phone}`}
           aria-label={`Call ${SITE.phone}`}
           whileHover={{ scale: 1.1 }}
@@ -66,7 +52,7 @@ export default function FloatingWidget() {
         </motion.a>
       </div>
 
-      {/* ══ MOBILE — pill bar only (Railway script renders its own chatbot button) ══ */}
+      {/* ══ MOBILE — pill bar (Railway embed script renders its own chatbot button above this) ══ */}
       <div className="lg:hidden">
         <AnimatePresence>
           {!drawerOpen && (

@@ -21,7 +21,8 @@
   [class*="chat-launcher"],
   [class*="widget-launcher"],
   [id*="chat-launcher"],
-  iframe[src*="web-production-a532a"] {
+  iframe[title*="chat"],
+  iframe[title*="widget"] {
     bottom: 80px !important;
   }
 }

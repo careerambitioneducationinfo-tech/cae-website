@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { MapPin, Users, Building2, GraduationCap } from 'lucide-react'
+import { MapPin, Users, Building2, GraduationCap, Globe } from 'lucide-react'
 import SectionWrapper from '@/components/shared/SectionWrapper'
 import { fadeInLeft, fadeInRight, viewportOnce } from '@/lib/animations'
 import { TAGLINES, SITE } from '@/lib/constants'
@@ -11,7 +11,7 @@ import { TAGLINES, SITE } from '@/lib/constants'
 const ABOUT_POINTS = [
   { icon: GraduationCap, text: '10,000+ students को successful admissions दिलाए हैं' },
   { icon: Building2,     text: '20 offices Bihar के अलग-अलग जिलों में — Motihari, Patna, Muzaffarpur और भी' },
-  { icon: GraduationCap, text: 'NMC approved MBBS Abroad, BSCC Loan, Engineering — complete guidance' },
+  { icon: Globe,         text: 'NMC approved MBBS Abroad, BSCC Loan, Engineering — complete guidance' },
   { icon: Users,         text: '490+ expert counselors — हर student को personal attention' },
 ]
 

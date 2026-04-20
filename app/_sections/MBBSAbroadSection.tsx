@@ -1,21 +1,18 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { CheckCircle, Globe, Mountain, MapPin, Sun, Droplets, Snowflake } from 'lucide-react'
-import type { LucideProps } from 'lucide-react'
+import { CheckCircle } from 'lucide-react'
 import SectionWrapper from '@/components/shared/SectionWrapper'
 import { staggerSlow, scaleIn, fadeInLeft, fadeInRight, viewportOnce, buttonTap } from '@/lib/animations'
 import { MBBS_COUNTRIES, TAGLINES } from '@/lib/constants'
 
-type CountryMeta = { icon: React.ComponentType<LucideProps>; color: string; bg: string }
-
-const COUNTRY_ICONS: Record<string, CountryMeta> = {
-  Russia:     { icon: Snowflake, color: '#60a5fa', bg: 'rgba(96,165,250,0.15)' },
-  Uzbekistan: { icon: Sun,       color: '#fbbf24', bg: 'rgba(251,191,36,0.15)' },
-  Kyrgyzstan: { icon: Mountain,  color: '#34d399', bg: 'rgba(52,211,153,0.15)' },
-  Kazakhstan: { icon: MapPin,    color: '#f97316', bg: 'rgba(249,115,22,0.15)' },
-  Bangladesh: { icon: Droplets,  color: '#38bdf8', bg: 'rgba(56,189,248,0.15)' },
-  Nepal:      { icon: Globe,     color: '#c084fc', bg: 'rgba(192,132,252,0.15)' },
+const COUNTRY_FLAGS: Record<string, string> = {
+  Russia:     '🇷🇺',
+  Uzbekistan: '🇺🇿',
+  Kyrgyzstan: '🇰🇬',
+  Kazakhstan: '🇰🇿',
+  Bangladesh: '🇧🇩',
+  Nepal:      '🇳🇵',
 }
 
 const HIGHLIGHTS = [
@@ -61,18 +58,9 @@ export default function MBBSAbroadSection() {
                 whileHover={{ borderColor: '#FBD207', backgroundColor: 'rgba(255,255,255,0.1)' }}
                 className="bg-white/5 border border-white/15 rounded-brand p-4 cursor-pointer transition-colors"
               >
-                {(() => {
-                  const meta = COUNTRY_ICONS[country.name] ?? { icon: Globe, color: '#94a3b8', bg: 'rgba(148,163,184,0.15)' }
-                  const Icon = meta.icon
-                  return (
-                    <div
-                      className="w-9 h-9 rounded-lg flex items-center justify-center mb-2"
-                      style={{ background: meta.bg }}
-                    >
-                      <Icon className="w-5 h-5" style={{ color: meta.color }} />
-                    </div>
-                  )
-                })()}
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-2 bg-white/10 text-2xl">
+                  {COUNTRY_FLAGS[country.name] ?? '🌍'}
+                </div>
                 <h3 className="text-white font-bold text-sm mb-1">{country.name}</h3>
                 <p className="text-yel font-black text-base leading-none">{country.fee}</p>
                 <p className="text-white/50 text-xs mt-0.5">{country.duration}</p>

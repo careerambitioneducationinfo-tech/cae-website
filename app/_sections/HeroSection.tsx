@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { CheckCircle, Phone } from 'lucide-react'
+import { CheckCircle, Phone, GraduationCap } from 'lucide-react'
 import Image from 'next/image'
 import { fadeInLeft, fadeInRight, buttonTap, viewportOnce } from '@/lib/animations'
 import { TAGLINES, SITE, COURSE_OPTIONS } from '@/lib/constants'
@@ -118,7 +118,7 @@ export default function HeroSection() {
                 className="inline-flex items-center justify-center gap-2 bg-yel text-dk font-bold px-7 py-3.5 rounded-full text-sm hover:bg-yel/90 transition-colors font-hindi shadow-lg shadow-yel/20"
                 aria-label="Free counseling"
               >
-                🎓 Free Counseling लें
+                <GraduationCap className="w-4 h-4" /> Free Counseling लें
               </motion.a>
               <motion.a
                 href={`tel:${SITE.phone}`}

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import HeroSection from './_sections/HeroSection'
 import StatsBar from './_sections/StatsBar'
 import AttentionHookSection from './_sections/AttentionHookSection'
+import VideoSection from './_sections/VideoSection'
 import ServicesSection from './_sections/ServicesSection'
 import CoursesSection from './_sections/CoursesSection'
 import MBBSAbroadSection from './_sections/MBBSAbroadSection'
@@ -27,6 +28,7 @@ export default function HomePage() {
       <HeroSection />
       <StatsBar />
       <AttentionHookSection />
+      <VideoSection />
       <ServicesSection />
       <CoursesSection />
       <MBBSAbroadSection />

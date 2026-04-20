@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import {
   GraduationCap, Stethoscope, Plane,
-  Building2, Banknote, Users, ArrowRight,
+  TrendingUp, Banknote, Users, ArrowRight,
 } from 'lucide-react'
 import SectionWrapper from '@/components/shared/SectionWrapper'
 import { staggerContainer, fadeInUp, cardHover } from '@/lib/animations'
@@ -41,7 +41,7 @@ const SERVICES: ServiceCard[] = [
     href: '/bscc-loan',
   },
   {
-    icon: Building2,
+    icon: TrendingUp,
     title: 'MBA / Management',
     desc: 'Top management colleges — CAT/MAT/CMAT guidance। IIM, XLRI, private MBA programs।',
     href: '/courses',

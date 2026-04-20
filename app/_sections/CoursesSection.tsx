@@ -3,9 +3,9 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  Laptop, Stethoscope, Plane, Briefcase,
+  Cpu, Stethoscope, Plane, Briefcase,
   Scale, Leaf, Pill, Heart,
-  CreditCard, BookOpen,
+  CreditCard, TrendingUp, Code2, Smile,
 } from 'lucide-react'
 import SectionWrapper from '@/components/shared/SectionWrapper'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
@@ -21,13 +21,13 @@ interface CourseCard {
 }
 
 const COURSES: CourseCard[] = [
-  { name: 'B.Tech / Engineering', category: 'Engineering', icon: Laptop, fee: '₹3–12L/yr', duration: '4 Years' },
+  { name: 'B.Tech / Engineering', category: 'Engineering', icon: Cpu, fee: '₹3–12L/yr', duration: '4 Years' },
   { name: 'MBBS India', category: 'Medical', icon: Stethoscope, fee: '₹5–20L/yr', duration: '5.5 Years' },
   { name: 'MBBS Abroad', category: 'Medical', icon: Plane, fee: '₹3–7L/yr', duration: '6 Years', highlight: 'NMC ✅' },
   { name: 'MBA', category: 'Management', icon: Briefcase, fee: '₹2–8L/yr', duration: '2 Years' },
-  { name: 'BBA', category: 'Management', icon: BookOpen, fee: '₹1–3L/yr', duration: '3 Years' },
-  { name: 'BCA / MCA', category: 'Engineering', icon: Laptop, fee: '₹1–3L/yr', duration: '3 Years' },
-  { name: 'BAMS / BDS', category: 'Medical', icon: Stethoscope, fee: '₹3–8L/yr', duration: '5 Years' },
+  { name: 'BBA', category: 'Management', icon: TrendingUp, fee: '₹1–3L/yr', duration: '3 Years' },
+  { name: 'BCA / MCA', category: 'Engineering', icon: Code2, fee: '₹1–3L/yr', duration: '3 Years' },
+  { name: 'BAMS / BDS', category: 'Medical', icon: Smile, fee: '₹3–8L/yr', duration: '5 Years' },
   { name: 'B.Pharma', category: 'Medical', icon: Pill, fee: '₹1–4L/yr', duration: '4 Years' },
   { name: 'B.Sc Nursing', category: 'Medical', icon: Heart, fee: '₹1–3L/yr', duration: '4 Years' },
   { name: 'B.Sc Agriculture', category: 'Other', icon: Leaf, fee: '₹50K–2L/yr', duration: '4 Years' },
